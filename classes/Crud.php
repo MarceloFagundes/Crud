@@ -6,7 +6,7 @@ abstract class Crud implements ICrud {
     protected $tabela = 'usuarios';
     protected $tbl_cursos = 'cursos';
 
-    public function find() {
+        public function find() {
         $sql = "SELECT Nome, idCurso FROM  $this->tbl_cursos";
         $stm = DB::prepare($sql);
         $stm->execute();
@@ -36,18 +36,18 @@ abstract class Crud implements ICrud {
         $stm->bindParam(':nome', $this->nome);
         $stm->bindParam(':email', $this->email);
         $stm->bindParam(':idCurso', $this->idCurso->idCurso);
-        print_r($stm);
-        //return $stm->execute();
+        return $stm->execute();
 
     }
     
     
     public function update($id) {
-        $sql = "UPDATE $this->tabela SET nome = :nome, email = :email WHERE id = :id";
+        $sql = "UPDATE $this->tabela SET nome = :nome, email = :email, idCurso = :idCurso WHERE id = :id";
         $stm = DB::prepare($sql);
         $stm->bindParam(':id', $id, PDO::PARAM_INT);
         $stm->bindParam(':nome', $this->nome);
         $stm->bindParam(':email', $this->email);
+        $stm->bindParam(':idCurso', $this->idCurso->idCurso);
         return $stm->execute();
     }
     

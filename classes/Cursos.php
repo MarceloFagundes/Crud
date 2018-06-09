@@ -21,7 +21,7 @@
 		return $this->idCurso;
 	}
 
-	    public function find() {
+	    public function findAll() {
         $sql = "SELECT Nome, idCurso FROM  $this->tbl_cursos";
         $stm = DB::prepare($sql);
         $stm->execute();

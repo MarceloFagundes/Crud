@@ -29,12 +29,12 @@
                         $nome  = $_POST['nome'];
                         $email = $_POST['email'];
                         $cursos = $_POST['cursos'];
-                        $curso->setCursos($cursos);
+
+                        $curso->setIdCurso($cursos);
+
                         $usuario->setNome($nome);
                         $usuario->setEmail($email);
                         $usuario->setIdCurso($curso);
-						echo "<pre>";
-                        print_r($usuario);
                                                
                         if ($usuario->insert()) {
                         
@@ -54,7 +54,7 @@
 		if(isset($_GET['acao']) && $_GET['acao'] == 'deletar'):
 			$id = (int)$_GET['id'];
 			$usuario->delete($id);
-				header('Location: http://localhost/teste/index.php');
+				header('Location: http://localhost/Crud_POO/index.php');
 
 		endif;
 
@@ -67,25 +67,26 @@
 			$resultado = $usuario->findUnit($id);
 
 		    if(isset($_POST['atualizar'])):
-			    $id = $_POST['id'];
-				$nome = $_POST['nome'];
-				$email = $_POST['email'];
-				$cursos = $_POST['cursos'];
-				$usuario->setNome($nome);
-				$usuario->setEmail($email);
-				$curso->setCursos($cursos);
 
-				echo "<pre>";
-                print_r($cursos);
-				echo "</pre>";
-				exit();
+			    $id = $_POST['id'];
+			    
+				$nome  = $_POST['nome'];
+                $email = $_POST['email'];
+                $cursos = $_POST['cursos'];
+
+                $curso->setIdCurso($cursos);
+
+                $usuario->setNome($nome);
+                $usuario->setEmail($email);
+                $usuario->setIdCurso($curso);
+				
 
 			if($usuario->update($id)){
 				 echo '<div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>OK!</strong> Alterado com sucesso!!! </div>';
 
-  header('Location: http://localhost/teste/index.php');
+  header('Location: http://localhost/Crud_POO/index.php');
                         
                     } else {
                         echo '<div class="alert alert-success alert-dismissible" role="alert">
@@ -147,7 +148,7 @@
                 }
 			    ?>
 			  </select>
-			  
+			 
 			</div>
 			<div class="col">
 			<input type="submit" name="cadastrar" class="btn btn-primary" value="Cadastrar dados">	
